@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+  vars_files:
+    - goss.yml
+  roles:
+    - role: rbenv
+
+  tasks:
+    - name: Dump host variables for role
+      template: src=config.yml.j2 dest={{goss_test_variables}}
