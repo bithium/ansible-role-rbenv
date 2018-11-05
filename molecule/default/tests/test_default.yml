@@ -19,6 +19,20 @@ file:
     owner: root
     group: root
 
+  {{.Vars.rbenv.root}}/plugins:
+    exists: true
+    owner: root
+    group: root
+    filetype: directory
+
+  {{range .Vars.rbenv.plugins}}
+  {{$.Vars.rbenv.root}}/plugins/{{.}}:
+    exists: true
+    owner: root
+    group: root
+    filetype: directory
+  {{end}}
+
 command:
   $SHELL -lc "rbenv --version":
     exit-status: 0

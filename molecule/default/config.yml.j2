@@ -2,4 +2,9 @@
 rbenv:
    packages: {{rbenv_packages | to_json}}
    root: {{rbenv_root}}
-   version: {{rbenv_version}}
+   version: {{rbenv_version | regex_replace("^v(.+)$", "\\1") }}
+   plugins:
+{% for name in rbenv_plugins %}
+  {% set plugin = lookup('vars', name) %}
+     - {{ plugin. name }}
+{% endfor %}
