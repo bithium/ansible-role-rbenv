@@ -33,6 +33,14 @@ file:
     filetype: directory
   {{end}}
 
+  {{range .Vars.rbenv.rubies}}
+  {{$.Vars.rbenv.root}}/versions/{{.}}:
+    exists: true
+    owner: root
+    group: root
+    filetype: directory
+  {{end}}
+
 command:
   $SHELL -lc "rbenv --version":
     exit-status: 0

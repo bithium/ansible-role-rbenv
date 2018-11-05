@@ -8,3 +8,4 @@ rbenv:
   {% set plugin = lookup('vars', name) %}
      - {{ plugin. name }}
 {% endfor %}
+   rubies: {{ rbenv_rubies | to_json }}

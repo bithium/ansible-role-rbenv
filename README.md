@@ -69,6 +69,11 @@ rbenv_plugin/rbenv-vars:
   version: master
 ```
 
+ * Rubies to install into rbenv: `rbenv_rubies`
+
+NOTE: The user is responsible for installing the required packages necessary to compile the wanted ruby version.
+An exception to this rule is MRI as required packages should be installed when ruby-build plugin is installed.
+
 Dependencies
 ------------
 
