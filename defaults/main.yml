@@ -1,2 +1,9 @@
 ---
 # defaults file for rbenv
+
+rbenv_packages:
+  - git
+
+rbenv_repo: "https://github.com/rbenv/rbenv"
+
+rbenv_root: "/opt/rbenv"

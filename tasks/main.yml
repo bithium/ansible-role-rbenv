@@ -1,2 +1,23 @@
 ---
 # tasks file for rbenv
+
+- name: Install dependencies
+  package:
+    name: "{{rbenv_packages}}"
+    state: present
+
+- name: Check out rbenv sources
+  git:
+    repo: "{{ rbenv_repo }}"
+    dest: "{{ rbenv_root }}"
+    version: "v{{ rbenv_version }}"
+    accept_hostkey: true
+    force: true
+
+- name: Add rbenv initialization to system-wide profile
+  template:
+    src: rbenv.sh.j2
+    dest: /etc/profile.d/rbenv.sh
+    owner: root
+    group: root
+    mode: 0755

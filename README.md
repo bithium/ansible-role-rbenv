@@ -6,16 +6,30 @@ This role installs and configures [rbenv](https://github.com/rbenv/rbenv).
 Requirements
 ------------
 
-No special requirements;
+No special requirements; note that this role requires root access, so either run it in a playbook with a global `become: yes`, or invoke the role in your playbook like:
+
+    - hosts: app_server
+      roles:
+        - role: bithium.rbenv
+          become: yes
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including
-any variables that are in defaults/main.yml, vars/main.yml, and any variables
-that can/should be set via parameters to the role. Any variables that are read
-from other roles and/or the global scope (ie. hostvars, group vars, etc.) should
-be mentioned here as well.
+Available variables are listed below, along with default values (see `defaults/main.yml` and `vars/main.yml`):
+
+ * Packages to install for each OS: `rbenv_packages`:
+
+     rbenv_packages:
+       - git
+
+ * Repository to download sources from:
+
+      rbenv_repo: "https://github.com/rbenv/rbenv"
+
+ * Installation path: `rbenv_root: "/opt/rbenv"`
+
+ * Installation version: `rbenv_version: 1.1.1`
 
 Dependencies
 ------------

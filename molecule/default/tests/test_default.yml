@@ -1,8 +1,26 @@
 # Molecule managed
 
 ---
+package:
+{{range .Vars.rbenv.packages}}
+  {{.}}:
+    installed: true
+{{end}}
+
 file:
-  /etc/hosts:
+  {{.Vars.rbenv.root}}:
     exists: true
     owner: root
     group: root
+    filetype: directory
+
+  {{.Vars.rbenv.root}}/bin/rbenv:
+    exists: true
+    owner: root
+    group: root
+
+command:
+  $SHELL -lc "rbenv --version":
+    exit-status: 0
+    stdout:
+      - rbenv {{.Vars.rbenv.version}}
