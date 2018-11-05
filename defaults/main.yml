@@ -7,3 +7,5 @@ rbenv_packages:
 rbenv_repo: "https://github.com/rbenv/rbenv"
 
 rbenv_root: "/opt/rbenv"
+
+rbenv_plugins_root: "{{rbenv_root}}/plugins"

@@ -21,3 +21,15 @@
     owner: root
     group: root
     mode: 0755
+
+- name: Create base directory for plugins
+  file:
+    path: "{{rbenv_plugins_root}}"
+    state: directory
+    owner: root
+    group: root
+
+- include_tasks: plugin.yml
+  vars:
+    rbenv_plugin: "{{lookup('vars', item)}}"
+  loop: "{{rbenv_plugins}}"
