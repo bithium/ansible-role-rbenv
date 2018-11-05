@@ -29,7 +29,7 @@ Available variables are listed below, along with default values (see `defaults/m
 
  * Installation path: `rbenv_root: "/opt/rbenv"`
 
- * Installation version: `rbenv_version: 1.1.1`
+ * Installation version: `rbenv_version: master`
 
  * Plugins to install:
 

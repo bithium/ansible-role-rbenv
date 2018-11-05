@@ -1,6 +1,8 @@
 ---
 # defaults file for rbenv
 
+rbenv_version: master
+
 rbenv_packages:
   - git
 

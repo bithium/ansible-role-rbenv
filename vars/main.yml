@@ -1,7 +1,6 @@
 ---
 # vars file for rbenv
 
-rbenv_version: 1.1.1
 
 rbenv_plugin/ruby-build:
   name: ruby-build

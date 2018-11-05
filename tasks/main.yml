@@ -10,7 +10,7 @@
   git:
     repo: "{{ rbenv_repo }}"
     dest: "{{ rbenv_root }}"
-    version: "v{{ rbenv_version }}"
+    version: "{{ rbenv_version }}"
     accept_hostkey: true
     force: true
 
