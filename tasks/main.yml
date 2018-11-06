@@ -35,7 +35,7 @@
   loop: "{{rbenv_plugins}}"
 
 - name: Install rubies
-  shell: "/bin/bash -lc 'rbenv install -s {{item}}'"
+  command: "/bin/bash -lc 'rbenv install -s {{item}}'"
   args:
     creates: "{{rbenv_root}}/versions/{{item}}/bin/ruby"
   loop: "{{rbenv_rubies}}"
