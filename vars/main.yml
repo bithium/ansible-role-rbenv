@@ -7,6 +7,17 @@ rbenv_plugin/ruby-build:
   repo: https://github.com/rbenv/ruby-build.git
   version: master
   packages:
+    Alpine:
+      - build-base
+      - linux-headers
+      - bzip2
+      - curl
+      - git
+      - libffi-dev
+      - openssl-dev
+      - readline-dev
+      - yaml
+      - zlib-dev
     Debian:
       - build-essential
       - curl

@@ -6,6 +6,14 @@ driver:
 lint:
   name: yamllint
 platforms:
+  - name: rbenv-alpine-3.7
+    image: alpine:3.7
+    volumes:
+      - "/mnt/mirrors/alpine/3.7:/var/cache/apk"
+  - name: rbenv-alpine-3.8
+    image: alpine:3.8
+    volumes:
+      - "/mnt/mirrors/alpine/3.8:/var/cache/apk"
   - name: rbenv-debian-stable
     image: debian:stable
     volumes:

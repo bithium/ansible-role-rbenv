@@ -2,6 +2,11 @@
 - name: Converge
   hosts: all
   vars:
+    packages:
+      Alpine:
+        - openjdk8-jre
+      Debian:
+        - default-jre
     rbenv_version: v1.1.1
     rbenv_rubies:
       - 2.5.1
@@ -12,10 +17,8 @@
   pre_tasks:
     - name: Install packages for building test rubies
       package:
-        name: "{{item}}"
+        name: "{{packages[ansible_os_family]}}"
         state: present
-      with_items:
-        - default-jre
 
   roles:
     - role: rbenv

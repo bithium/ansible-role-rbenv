@@ -34,6 +34,15 @@
     rbenv_plugin: "{{lookup('vars', item)}}"
   loop: "{{rbenv_plugins}}"
 
+- name: Tweak library files to match jruby requirements
+  file:
+    path: "/usr/lib/libcrypt.so.1"
+    src: "/usr/lib/libcrypto.so.1.0.0"
+    state: link
+  when: >
+    ansible_os_family == 'Alpine' and
+    rbenv_rubies | map('truncate', 5, True, '') | select('eq', 'jruby') | list | count | int
+
 - name: Install rubies
   command: "/bin/bash -lc 'rbenv install -s {{item}}'"
   args:
