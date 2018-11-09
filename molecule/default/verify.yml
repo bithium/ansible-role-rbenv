@@ -1,7 +1,6 @@
 ---
 - name: Verify
   hosts: all
-  become: true
 
   vars:
     root_path: "{{lookup('env', 'MOLECULE_PROJECT_DIRECTORY')}}"
@@ -49,6 +48,7 @@
       ignore_errors: true
       register: test_results
       with_items: "{{ molecule_tests }}"
+      become: true
 
     - name: Setup log directory
       local_action: file
