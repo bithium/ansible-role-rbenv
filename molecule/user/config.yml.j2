@@ -1,0 +1,12 @@
+---
+rbenv:
+   packages: {{rbenv_packages | to_json}}
+   root: {{rbenv_root}}
+   user: {{rbenv_user}}
+   version: {{rbenv_version | regex_replace("^v(.+)$", "\\1") }}
+   plugins:
+{% for name in rbenv_plugins %}
+  {% set plugin = lookup('vars', name) %}
+     - {{ plugin. name }}
+{% endfor %}
+   rubies: {{ rbenv_rubies | to_json }}

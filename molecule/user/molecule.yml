@@ -1,0 +1,52 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: rbenv-alpine-3.7
+    image: alpine:3.7
+    volumes:
+      - "/mnt/mirrors/alpine/3.7:/var/cache/apk"
+  - name: rbenv-alpine-3.8
+    image: alpine:3.8
+    volumes:
+      - "/mnt/mirrors/alpine/3.8:/var/cache/apk"
+  - name: rbenv-debian-stable
+    image: debian:stable
+    volumes:
+      - "/mnt/mirrors/debian/stable:/var/cache/apt/archives"
+    command: sleep infinity
+  - name: rbenv-debian-testing
+    image: debian:testing
+    volume_mounts:
+      - "/mnt/mirrors/debian/testing:/var/cache/apt/archives"
+    command: sleep infinity
+  - name: rbenv-ubuntu-14.04
+    image: ubuntu:14.04
+    volumes:
+      - "/mnt/mirrors/ubuntu/14.04:/var/cache/apt/archives"
+    command: sleep infinity
+  - name: rbenv-ubuntu-16.04
+    image: ubuntu:16.04
+    volume_mounts:
+      - "/mnt/mirrors/ubuntu/16.04:/var/cache/apt/archives"
+    command: sleep infinity
+  - name: rbenv-ubuntu-18.04
+    image: ubuntu:18.04
+    volumes:
+      - "/mnt/mirrors/ubuntu/18.04:/var/cache/apt/archives"
+    command: sleep infinity
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+scenario:
+  name: user
+verifier:
+  name: goss
+  lint:
+    name: yamllint
+    enabled: false

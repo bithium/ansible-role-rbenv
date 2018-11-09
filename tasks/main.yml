@@ -13,21 +13,37 @@
     version: "{{ rbenv_version }}"
     accept_hostkey: true
     force: true
+  become: true
+  become_user: "{{rbenv_user}}"
 
-- name: Add rbenv initialization to system-wide profile
+- name: Setup rbenv for system
   template:
     src: rbenv.sh.j2
     dest: /etc/profile.d/rbenv.sh
-    owner: root
-    group: root
     mode: 0755
+  become: true
+  when: rbenv_user == 'root'
+
+- name: Setup rbenv for user
+  blockinfile:
+    path: "{{rbenv_user_home}}/.profile"
+    block: |
+      # rbenv setup
+      if [ -f {{rbenv_root}}/bin/rbenv ]; then
+        export PATH={{rbenv_root}}/bin/:$PATH
+        eval "$({{rbenv_root}}/bin/rbenv init -)"
+      fi
+    create: true
+    owner: "{{rbenv_user}}"
+    group: "{{rbenv_group}}"
+  when: rbenv_user != 'root'
 
 - name: Create base directory for plugins
   file:
     path: "{{rbenv_plugins_root}}"
     state: directory
-    owner: root
-    group: root
+    owner: "{{rbenv_user}}"
+    group: "{{rbenv_group}}"
 
 - include_tasks: plugin.yml
   vars:
@@ -48,3 +64,5 @@
   args:
     creates: "{{rbenv_root}}/versions/{{item}}/bin/ruby"
   loop: "{{rbenv_rubies}}"
+  become: true
+  become_user: "{{rbenv_user}}"

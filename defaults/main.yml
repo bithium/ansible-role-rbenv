@@ -1,6 +1,11 @@
 ---
 # defaults file for rbenv
 
+rbenv_user: root
+rbenv_group: "{{rbenv_user}}"
+
+rbenv_user_home: "/home/{{rbenv_user}}"
+
 rbenv_version: master
 
 rbenv_packages:
@@ -8,6 +13,9 @@ rbenv_packages:
 
 rbenv_repo: "https://github.com/rbenv/rbenv"
 
-rbenv_root: "/opt/rbenv"
+rbenv_roots:
+  root: "/opt/rbenv"
+
+rbenv_root: "{{ rbenv_roots[rbenv_user] | default(rbenv_user_home ~ '/.rbenv') }}"
 
 rbenv_plugins_root: "{{rbenv_root}}/plugins"

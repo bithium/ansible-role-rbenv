@@ -1,0 +1,56 @@
+# Molecule managed
+
+---
+package:
+{{range .Vars.rbenv.packages}}
+  {{.}}:
+    installed: true
+{{end}}
+
+user:
+  {{.Vars.rbenv.user}}:
+    exists: true
+
+file:
+  {{.Vars.rbenv.root}}:
+    exists: true
+    owner: {{$.Vars.rbenv.user}}
+    group: {{$.Vars.rbenv.user}}
+    filetype: directory
+
+  {{.Vars.rbenv.root}}/bin/rbenv:
+    exists: true
+    owner: {{$.Vars.rbenv.user}}
+    group: {{$.Vars.rbenv.user}}
+
+  {{.Vars.rbenv.root}}/plugins:
+    exists: true
+    owner: {{$.Vars.rbenv.user}}
+    group: {{$.Vars.rbenv.user}}
+    filetype: directory
+
+  {{range .Vars.rbenv.plugins}}
+  {{$.Vars.rbenv.root}}/plugins/{{.}}:
+    exists: true
+    owner: {{$.Vars.rbenv.user}}
+    group: {{$.Vars.rbenv.user}}
+    filetype: directory
+  {{end}}
+
+  {{range .Vars.rbenv.rubies}}
+  {{$.Vars.rbenv.root}}/versions/{{.}}:
+    exists: true
+    owner: {{$.Vars.rbenv.user}}
+    group: {{$.Vars.rbenv.user}}
+    filetype: directory
+  {{end}}
+
+command:
+  su -l -s /bin/bash -c "rbenv --version" {{.Vars.rbenv.user}}:
+    exit-status: 0
+    stdout:
+      - rbenv {{.Vars.rbenv.version}}
+
+command:
+  rbenv --version:
+    exit-status: 127

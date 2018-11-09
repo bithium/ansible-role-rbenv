@@ -1,0 +1,29 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    packages:
+      Alpine:
+        - shadow
+        - openjdk8-jre
+      Debian:
+        - default-jre
+  vars_files:
+    - rbenv.yml
+    - goss.yml
+
+  pre_tasks:
+    - name: Install packages for building test rubies
+      package:
+        name: "{{packages[ansible_os_family]}}"
+        state: present
+
+    - name: Create user for testing
+      user: name={{rbenv_user}}
+
+  roles:
+    - role: rbenv
+
+  tasks:
+    - name: Dump host variables for role
+      template: src=config.yml.j2 dest={{goss_test_variables}}
