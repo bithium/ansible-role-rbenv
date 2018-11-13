@@ -5,4 +5,4 @@ rbenv_rubies:
   - 2.5.1
   - jruby-9.1.17.0
 
-# rbenv_user: bithium
+rbenv_user: "{{ lookup('env', 'RBENV_USER') }}"

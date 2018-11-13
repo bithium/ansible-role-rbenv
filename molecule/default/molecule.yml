@@ -45,6 +45,8 @@ provisioner:
     prepare: ../common/prepare.yml
     converge: ../common/playbook.yml
     verify: ../common/verify.yml
+  env:
+    RBENV_USER: "root"
   lint:
     name: ansible-lint
 scenario:
