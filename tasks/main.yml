@@ -59,6 +59,7 @@
   when: >
     ansible_os_family == 'Alpine' and
     rbenv_rubies | map('truncate', 5, True, '') | select('eq', 'jruby') | list | count | int
+  tags: rubies_install
 
 - name: Install rubies
   command: "/bin/bash -lc 'rbenv install -s {{item}}'"
@@ -67,3 +68,4 @@
   loop: "{{rbenv_rubies}}"
   become: true
   become_user: "{{rbenv_user}}"
+  tags: rubies_install
