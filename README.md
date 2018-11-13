@@ -1,5 +1,5 @@
 rbenv
-=========
+=====
 
 This role installs and configures [rbenv](https://github.com/rbenv/rbenv).
 
@@ -85,9 +85,16 @@ Example Playbook
 Including an example of how to use your role (for instance, with variables
 passed in as parameters) is always nice for users too:
 
+```yaml
     - hosts: servers
+      vars:
+        rbenv_rubies:
+        - 2.5.1
+        - jruby-9.1.17.0
+
       roles:
-         - { role: rbenv, x: 42 }
+         - role: rbenv
+```
 
 License
 -------
