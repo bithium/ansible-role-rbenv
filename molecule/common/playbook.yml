@@ -1,31 +1,10 @@
 ---
 - name: Converge
   hosts: all
-  vars:
-    packages:
-      Alpine:
-        - openjdk8-jre
-      Debian:
-        - default-jre
+
   vars_files:
     - rbenv.yml
     - goss.yml
-
-  pre_tasks:
-    - name: Install packages for building test rubies
-      package:
-        name: "{{packages[ansible_os_family]}}"
-        state: present
-      tags: rubies_install
-
-    - name: Add missing package for `useradd`
-      package:
-        name: shadow
-        state: present
-      when: ansible_os_family == 'Alpine'
-
-    - name: Create user for testing
-      user: name={{rbenv_user}}
 
   roles:
     - role: rbenv
