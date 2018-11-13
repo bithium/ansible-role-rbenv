@@ -14,5 +14,6 @@
     version: "{{ rbenv_plugin.version }}"
     accept_hostkey: true
     force: true
+    depth: 1
   become: true
   become_user: "{{rbenv_user}}"
