@@ -4,7 +4,6 @@
   vars:
     packages:
       Alpine:
-        - shadow
         - openjdk8-jre
       Debian:
         - default-jre
@@ -17,6 +16,13 @@
       package:
         name: "{{packages[ansible_os_family]}}"
         state: present
+      tags: rubies_install
+
+    - name: Add missing package for `useradd`
+      package:
+        name: shadow
+        state: present
+      when: ansible_os_family == 'Alpine'
 
     - name: Create user for testing
       user: name={{rbenv_user}}

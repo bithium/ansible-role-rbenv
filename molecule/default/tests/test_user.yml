@@ -1,0 +1,14 @@
+# Molecule managed
+
+---
+
+command:
+  su -l -s /bin/sh -c "rbenv --version":
+    exit-status: 0
+    stdout:
+      - rbenv {{.Vars.rbenv.version}}
+
+  su -l -s /bin/sh -c "rbenv --version" bithium:
+    exit-status: 0
+    stdout:
+      - rbenv {{.Vars.rbenv.version}}
