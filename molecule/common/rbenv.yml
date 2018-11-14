@@ -2,3 +2,23 @@
 rbenv_version: v1.1.1
 
 rbenv_user: "{{ lookup('env', 'RBENV_USER') }}"
+
+rbenv_plugin/rbenv-vars:
+  name: rbenv-vars
+  repo: https://github.com/rbenv/rbenv-vars.git
+  version: v1.2.0
+
+rbenv_plugin/rbenv-update:
+  name: rbenv-update
+  repo: https://github.com/rkh/rbenv-update.git
+  packages:
+    Alpine:
+      - tree
+      - vim
+    Debian:
+      - tree
+      - vim
+
+rbenv_plugins:
+  - rbenv_plugin/rbenv-vars
+  - rbenv_plugin/rbenv-update

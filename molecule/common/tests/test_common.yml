@@ -7,6 +7,12 @@ package:
     installed: true
 {{end}}
 
+  vim:
+    installed: true
+
+  tree:
+    installed: true
+
 file:
   {{.Vars.rbenv.root}}:
     exists: true
@@ -33,3 +39,8 @@ file:
     filetype: directory
   {{end}}
 
+command:
+  cd {{.Vars.rbenv.root}}/plugins/rbenv-vars && git fetch --tags && git describe --tags --always:
+    exit-status: 0
+    stdout:
+      - v1.2.0
