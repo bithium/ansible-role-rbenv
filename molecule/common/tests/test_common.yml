@@ -33,10 +33,3 @@ file:
     filetype: directory
   {{end}}
 
-  {{range .Vars.rbenv.rubies}}
-  {{$.Vars.rbenv.root}}/versions/{{.}}:
-    exists: true
-    owner: {{$.Vars.rbenv.user}}
-    group: {{$.Vars.rbenv.user}}
-    filetype: directory
-  {{end}}

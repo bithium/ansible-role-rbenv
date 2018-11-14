@@ -6,7 +6,6 @@
     name: "{{ rbenv_plugin.packages[ansible_os_family] }}"
     state: present
   when: rbenv_plugin.packages is defined
-  tags: rubies_install
 
 - name: Check out plugin sources
   git:
