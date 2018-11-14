@@ -21,7 +21,7 @@ platforms:
     command: sleep infinity
   - name: rbenv-debian-testing
     image: debian:testing
-    volume_mounts:
+    volumes:
       - "/mnt/mirrors/debian/testing:/var/cache/apt/archives"
     command: sleep infinity
   - name: rbenv-ubuntu-14.04
@@ -31,7 +31,7 @@ platforms:
     command: sleep infinity
   - name: rbenv-ubuntu-16.04
     image: ubuntu:16.04
-    volume_mounts:
+    volumes:
       - "/mnt/mirrors/ubuntu/16.04:/var/cache/apt/archives"
     command: sleep infinity
   - name: rbenv-ubuntu-18.04
