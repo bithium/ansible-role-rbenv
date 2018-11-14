@@ -28,6 +28,12 @@
     - name: Install Goss
       copy: src="/tmp/goss-linux-{{ goss_arch }}" dest="{{goss_dst}}" mode=0755
 
+    - name: Patch Goss for Alpine
+      command: "sed -i 's/sysinit/default/' {{goss_dst}}"
+      args:
+        warn: false
+      when: ansible_os_family == 'Alpine'
+
     - name: Register available tests
       local_action: set_fact
       args:
@@ -36,13 +42,6 @@
       with_fileglob:
         - "{{test_path}}/test_*.yml"
       run_once: true
-
-    - name: Setup log directory
-      local_action: file
-      args:
-        path: "{{log_path}}"
-        state: directory
-        mode: 0755
 
     - name: Setup test directory
       file:
@@ -72,7 +71,13 @@
       ignore_errors: true
       register: test_results
       with_items: "{{ molecule_tests }}"
-      become: true
+
+    - name: Setup log directory
+      local_action: file
+      args:
+        path: "{{log_path}}"
+        state: directory
+        mode: 0755
 
     - name: Save Goss test results
       fetch:
