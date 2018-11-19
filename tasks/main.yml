@@ -50,3 +50,4 @@
   vars:
     rbenv_plugin: "{{lookup('vars', item)}}"
   loop: "{{rbenv_plugins}}"
+  when: rbenv_plugins is defined
