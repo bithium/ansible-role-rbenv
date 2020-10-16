@@ -2,7 +2,7 @@
 dependency:
   name: galaxy
 driver:
-  name: docker
+  name: podman
 lint: |
   set -e
   yamllint .
@@ -34,7 +34,7 @@ platforms:
     command: sleep infinity
 provisioner:
   name: ansible
-# log: true
+  # log: true
   config_options:
     defaults:
       interpreter_python: "/usr/bin/python3"
