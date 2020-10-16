@@ -22,11 +22,6 @@ platforms:
     volumes:
       - "/mnt/mirrors/debian/stable:/var/cache/apt/archives"
     command: sleep infinity
-  - name: rbenv-ubuntu-16.04
-    image: ubuntu:16.04
-    volume_mounts:
-      - "/mnt/mirrors/ubuntu/16.04:/var/cache/apt/archives"
-    command: sleep infinity
   - name: rbenv-ubuntu-18.04
     image: ubuntu:18.04
     volumes:
