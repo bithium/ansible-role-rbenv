@@ -2,7 +2,7 @@
 
 ---
 command:
-  su -l -s /bin/bash -c "rbenv --version" {{ .Vars.rbenv.user }}:
+  su -l -c "rbenv --version" {{ .Vars.rbenv.user }}:
     exit-status: 0
     stdout:
       - rbenv {{ .Vars.rbenv.version }}

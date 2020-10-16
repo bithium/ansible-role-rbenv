@@ -9,6 +9,10 @@ lint: |
   ansible-lint
   flake8
 platforms:
+  - name: rbenv-alpine-3.11
+    image: alpine:3.11
+    volumes:
+      - "/mnt/mirrors/alpine/3.11:/var/cache/apk"
   - name: rbenv-debian-stable
     image: debian:stable
     volumes:
