@@ -3,19 +3,19 @@
 
 - name: Install dependencies
   package:
-    name: "{{rbenv_packages}}"
+    name: "{{ rbenv_packages }}"
     state: present
 
 - name: Check out rbenv sources
   git:
-    repo: "{{ rbenv_repo }}"
-    dest: "{{ rbenv_root }}"
-    version: "{{ rbenv_version }}"
+    repo: "{{ rbenv_repo  }}"
+    dest: "{{ rbenv_root  }}"
+    version: "{{ rbenv_version  }}"
     accept_hostkey: true
     force: true
     depth: 1
   become: true
-  become_user: "{{rbenv_user}}"
+  become_user: "{{ rbenv_user }}"
 
 - name: Setup rbenv for system
   template:
@@ -27,27 +27,29 @@
 
 - name: Setup rbenv for user
   blockinfile:
-    path: "{{rbenv_user_home}}/.profile"
+    path: "{{ rbenv_user_home }}/.profile"
     block: |
       # rbenv setup
-      if [ -f {{rbenv_root}}/bin/rbenv ]; then
-        export PATH={{rbenv_root}}/bin/:$PATH
-        eval "$({{rbenv_root}}/bin/rbenv init -)"
+      if [ -f {{ rbenv_root }}/bin/rbenv ]; then
+        export PATH={{ rbenv_root }}/bin/:$PATH
+        eval "$({{ rbenv_root }}/bin/rbenv init -)"
       fi
     create: true
-    owner: "{{rbenv_user}}"
-    group: "{{rbenv_group}}"
+    owner: "{{ rbenv_user }}"
+    group: "{{ rbenv_group }}"
+    mode: 0644
   when: rbenv_user != 'root'
 
 - name: Create base directory for plugins
   file:
-    path: "{{rbenv_plugins_root}}"
+    path: "{{ rbenv_plugins_root }}"
     state: directory
-    owner: "{{rbenv_user}}"
-    group: "{{rbenv_group}}"
+    owner: "{{ rbenv_user }}"
+    group: "{{ rbenv_group }}"
+    mode: 0755
 
 - include_tasks: plugin.yml
   vars:
-    rbenv_plugin: "{{lookup('vars', item)}}"
-  loop: "{{rbenv_plugins}}"
+    rbenv_plugin: "{{ lookup('vars', item) }}"
+  loop: "{{ rbenv_plugins }}"
   when: rbenv_plugins is defined

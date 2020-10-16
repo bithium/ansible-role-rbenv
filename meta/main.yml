@@ -24,6 +24,7 @@ galaxy_info:
         - 18.04
 
   galaxy_tags:
-    - ruby rbenv
+    - ruby
+    - rbenv
 
 dependencies: []

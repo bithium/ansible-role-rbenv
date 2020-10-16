@@ -1,19 +1,19 @@
 ---
 # Ansible tasks to install a rbenv plugin
 
-- name: "{{rbenv_plugin.name}} | Install plugin dependencies"
+- name: "{{ rbenv_plugin.name }} | Install plugin dependencies"
   package:
-    name: "{{ rbenv_plugin.packages[ansible_os_family] }}"
+    name: "{{  rbenv_plugin.packages[ansible_os_family] }}"
     state: present
   when: rbenv_plugin.packages is defined
 
-- name: "{{rbenv_plugin.name}} | Check out plugin sources"
+- name: "{{ rbenv_plugin.name }} | Check out plugin sources"
   git:
-    repo: "{{ rbenv_plugin.repo }}"
-    dest: "{{ rbenv_plugins_root }}/{{ rbenv_plugin.name }}"
-    version: "{{ rbenv_plugin.version | default('master') }}"
+    repo: "{{  rbenv_plugin.repo }}"
+    dest: "{{  rbenv_plugins_root }}/{{  rbenv_plugin.name }}"
+    version: "{{  rbenv_plugin.version | default('master') }}"
     accept_hostkey: true
     force: true
     depth: 1
   become: true
-  become_user: "{{rbenv_user}}"
+  become_user: "{{ rbenv_user }}"
