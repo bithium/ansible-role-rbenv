@@ -27,6 +27,11 @@ platforms:
     volumes:
       - "/mnt/mirrors/ubuntu/18.04:/var/cache/apt/archives"
     command: sleep infinity
+  - name: rbenv-ubuntu-20.04
+    image: ubuntu:20.04
+    volumes:
+      - "/mnt/mirrors/ubuntu/20.04:/var/cache/apt/archives"
+    command: sleep infinity
 provisioner:
   name: ansible
   playbooks:
