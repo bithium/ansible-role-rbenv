@@ -13,6 +13,10 @@ platforms:
     image: alpine:3.11
     volumes:
       - "/mnt/mirrors/alpine/3.11:/var/cache/apk"
+  - name: rbenv-alpine-3.12
+    image: alpine:3.12
+    volumes:
+      - "/mnt/mirrors/alpine/3.12:/var/cache/apk"
   - name: rbenv-debian-stable
     image: debian:stable
     volumes:
