@@ -22,11 +22,6 @@ platforms:
     volumes:
       - "/mnt/mirrors/debian/stable:/var/cache/apt/archives"
     command: sleep infinity
-  - name: rbenv-debian-testing
-    image: debian:testing
-    volumes:
-      - "/mnt/mirrors/debian/testing:/var/cache/apt/archives"
-    command: sleep infinity
   - name: rbenv-ubuntu-14.04
     image: ubuntu:14.04
     volumes:
